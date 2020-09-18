@@ -1,0 +1,280 @@
+---
+title: "R Notebook"
+output: html_notebook
+Author: Deexith Reddy
+---
+```{r}
+#ANSWER 1
+
+##ANSWER 1a:
+
+#The Bernoulli distribution is a discrete probability distribution of a random variable which takes a binary, boolean output: 1 with probability p, and 0 with probability (1-p). Whenever we   are running an experiment which might lead either to a success or to a failure, we can associate with success (labeled with 1) a probability p, while  failure (labeled with 0) will have probability (1-p).
+#Example: When tossing a toss, if success for us is outcome tail, then we set X=1 for tail and x=0 for head. Then probablity = 1/2:
+
+#P(x=1)=p=1/2
+```
+
+
+```{r}
+##ANSWER 1b: 
+
+#The expected value of a discrete random variable is the probability-weighted average of all its possible values. In other words, each possible value the random variable can assume is multiplied by its probability of occurring, and the resulting products are summed to produce the expected value.
+
+#Let E(X) be expected value of X
+
+#            X=1         X=1
+#     E(X) = Σ   XP(X) = Σ   X*(p^X)*(1-p)^(1-X)                    (n=1)
+#            X=0         X=0
+#                      = 0*(p^0)*(1-p)^(1-0) + 1*(p^1)*(1-p)^(1-1) = p
+#     E(X) = p (ONLY FOR BERNOULLI DISTRIBUTION)
+
+#For assumed probability p=0.5, Success being X=1, failure being X=0:
+p <- 0.5
+E <- list()
+ for (i in 0:1)
+  {z=i*(p^i)*(1-p)^(1-i)
+   E[i+1]=z}                   #Since the indexing start with 1, i+1=1, i=0,E(0)
+                               #                                 i+1=2, i=0,E(1)
+ print(do.call(sum, E))        # Printing E(X) E(X)=0.5, p=0.5
+```
+
+
+```{r}
+##ANSWER 1c:
+ 
+# Let V(X) be evariance value of X
+ 
+#            X=1              
+#     V(X) = Σ   ((X-E(X))^2)*P(X)                            (n=1)
+#            X=0
+#          = ((0-p)^2)*(p^0)*(1-p)^(1-0) + ((1-p)^2)*(p^1)*(1-p)^(1-1)
+#          = p^2*(1-p) + (1-p)^2*p
+#          = p(1–p)(p+1-p)
+#     V(X) = p(1-p)         
+
+#For assumed probability p=0.5, Success being X=1, failure being X=0: 
+p <- 0.5
+E <- list()
+ for (i in 0:1)
+  {z=(i-(i*(p^i)*(1-p)^(1-i)))*p
+   E[i+1]=z}                   #Since the indexing start with 1, i+1=1, i=0,E(0)
+                               #                                 i+1=2, i=1,E(1)
+ print(do.call(sum, E))        # Printing V(X) = 0.5*(1-0.5)=0.25
+
+ 
+  ##ANSWER 1d:
+ 
+ # If π is probablity of  binomial distribution formula is given by:
+ 
+ # P(X=x |n,π) = nCx*(π^x)*(1-π)^(n-x) : FORMULA FOR PROBABLITY
+ # E(X) = nπ : FORMULA FOR EXPECTED VALUE
+ # V(X) = nπ(1-π) : FORMULA FOR VARIANCE VALUE
+ 
+ # Since the maximum value of X in Bernoulli distribution is 1, the sample space is 1. We can use n=1 in Binomial Distribution equations to get the same solutions as Bernoulli Distribution.If there are n Bernoulli trials, then the sum of those trials is binomially distributed with parameters n and p
+ 
+ # P(X=x |n,π) = 1C1*(π^1)*(1-π)^(1-1) = π             (p)
+ # E(X) = nπ = 1xπ = π                                 (E(X) = p)
+ # V(X) = nπ(1-π) = π(1-π)                             (V(X)=p(1-p))
+ 
+ 
+ 
+```
+```{r}
+#ANSWER 2
+
+##ANSWER 2A
+n=95
+p=0.18
+E <- n*p       #EXPECTED
+print(E)
+```
+
+
+```{r}
+##ANSWER 2B
+n=95
+p=0.18
+V <- n*p*(1-p)  #VARIANCE
+print(V)
+```
+
+
+```{r}
+##ANSWER 2C
+n=95
+p=0.18
+s <- ((1-p)-p)/(n*p*(1-p)) #Skew
+print(s)
+#Large n, small p, left-skewed
+```
+
+
+```{r}
+##ANSWER 2D
+n=95
+p=0.18
+r=13
+a<-dbinom(r, n, p, log = FALSE) 
+print(a)
+```
+
+
+```{r}
+##ANSWER 2E
+n=95
+p=0.18
+r=15
+a<-pbinom(r, n, p, lower.tail = TRUE, log.p = FALSE) 
+print(a)
+```
+
+
+```{r}
+##ANSWER 2F
+n=95
+p=0.18
+r=19
+a<- 1 - pbinom(r, n, p, lower.tail = TRUE, log.p = FALSE) 
+print(a)
+```
+
+
+```{r}
+##ANSWER 2G
+n=95
+p=0.18
+r=18
+a<-pbinom(r, n, p, lower.tail = TRUE, log.p = FALSE) 
+print(a)
+```
+
+
+```{r}
+##ANSWER 2H
+n=95
+p=0.18
+r=21
+a<-1-pbinom(r, n, p, lower.tail = TRUE, log.p = FALSE) 
+print(a)
+```
+
+
+```{r}
+##ANSWER 2I
+n=95
+p=0.18
+r=16
+q=24
+a<-abs(pbinom(r, n, p,lower.tail = TRUE, log.p = FALSE)-pbinom(q, n, p,lower.tail = TRUE, log.p = FALSE))
+print(a)
+```
+
+
+```{r}
+##ANSWER 2J
+n=95
+p=0.18
+r=16
+q=12
+a<-1-(abs(pbinom(r, n, p,lower.tail = TRUE, log.p = FALSE)-pbinom(q, n, p,lower.tail = TRUE, log.p = FALSE)))
+print(a)
+```
+
+
+```{r}
+##ANSWER 2K
+n=95
+p=0.18
+r=19
+a<-1-pbinom(r, n, p, lower.tail = TRUE, log.p = FALSE) 
+print(a)
+```
+
+
+```{r}
+##ANSWER 2L
+# P(A) = P(X>=17)=1-P(X<=16)
+# P(B) = P(X>=20)=1-P(X=<19)
+#P(B/A)=P(B)nP(A)/P(A) = P(B)/P(A)
+n=95
+p=0.18
+r=19
+q=16
+a<-((1-pbinom(r, n, p,log = FALSE)))/((1-pbinom(q, n, p,log = FALSE)))
+print(a)
+```
+
+
+```{r}
+##ANSWER 2M
+
+P<-list()
+n=95
+p=0.18
+for (i in 1:95)
+{
+z<-dbinom(i, n, p,log = FALSE)*i
+P[i+1]=z
+}
+
+print(do.call(sum, P))
+```
+
+
+
+```{r}
+##ANSWER 2N
+
+P<-list()
+n=95
+p=0.18
+for (i in 1:95)
+{
+z<-dbinom(i, n, p,log = FALSE)*i
+P[i+1]=z
+}
+
+print(do.call(sum, P))   #EXPECTED VALUE
+
+
+V<-list()
+
+for (j in 1:95)
+{
+y<-((j-(do.call(sum, P)))^2)*(dbinom(j, n, p,log = FALSE))
+V[j+1]=y
+}
+
+
+print(do.call(sum, V))   #VARIANCE
+```
+```{r}
+##ANSWER 2L
+P<-list()
+n=95
+p=0.18
+for (i in 1:95)
+{
+z<-dbinom(i, n, p,log = FALSE)*i
+P[i+1]=z
+}
+
+print(do.call(sum, P))   #EXPECTED VALUE
+
+
+W<-list()
+
+for (j in 1:95)
+{
+y<-dbinom(j, n, p,log = FALSE)*abs(j-(do.call(sum, P)))
+W[j+1]=y
+}
+
+print(do.call(sum, W))   
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

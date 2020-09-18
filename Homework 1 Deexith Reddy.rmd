@@ -1,0 +1,100 @@
+---
+title: "HW 1"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+author: Deexith Reddy
+
+# Problem 1
+
+## Problem 1.d.
+
+x<-(627/7)           # Creating x
+y<-round(x,2)        # Creating y
+help(ceiling)        # Explains ceiling function use
+z<-round(x,1)        # Creating z
+
+## Problem 1.e.
+
+cityNames = c("Shanghai","Beijing","Delhi","Karachi","Lagos","Tianjin") 
+#List of city names
+
+cityNames[2]
+#Output is "Beijing" since it is on Index 2 in list. Unlike Python, indexing in R starts from 1.
+
+population = c(24.24,21.54,18.98,14.91,21,11.558)     
+#Creating a list "population" in millions
+
+area = c(2448,6490,573,1460,452,4541)       
+#Creating a list "area" in square miles
+
+population.density<-population/area                  
+# Creating "population.density" to calculate population inmillion per square mile
+
+a = c(12, 17, 18, 1, 2, 6)
+#Creating vector "a"
+
+b = c(2,3,4)
+#Creating vector "b"
+
+a/b
+#When we divide with lesser numbers, the remaining number in "a" get divided by the number in "b" in same order.
+
+x.rand = c(rnorm(100, mean=10, sd=3))
+#Creating vector "x.rand" having 100 random number with mean  = 10 and sd = 3.
+
+d = c(2,3)
+#Creating vector "d" to divide x.rand
+
+x.rand = x.rand/d
+#Storing the results of division of of x.rand in the same index positions.
+#Explanation: Same as the previous example of "a/b". Here the first index position (odd) is divided by 2 and second (even) is divided by 3. Then the same continues for the remaining index positions in the list until index position 100.
+
+#Problem 2
+
+## Problem 2.a.
+
+# ARTICLE: Confidence in Key Institutions High as India Votes
+# This article is with reference to the Indian elections held in 2019.It describes what percentage of Indians beleive in the honesty of elections. It also adds how people's approval rating changed for incumbent prime minister and his government. 
+
+## Problem 2.b.
+
+# Population of interest is a group of 3,000 adults aged 15 and older. The interviews were conducted in eleven languages and this represents the diversity of the population of interest.
+
+## Problem 2.c.
+
+# Data Description: It was shown that 67% of the people showed confidence in the honesty of elections. This is an increase from 47% in 2014 to 67% in 2018. Secondly, there was a disparity between the percentage of  urban (52%) and rural (69%) people who trusted the current elections. Region wise, there was high trust in the north, east and west (75%) and less in the south (44%). Lastly, article adds that the approval for incumbent government decreased  from 79% in 2017 to 65% in 2019.
+
+## Problem 2.d.
+
+#Population parameter of interest is percentage of rural people showing high confidence (69%) in the honesty of elections. Though the rural economic distress is high and is a matter of concern, they show more trust in elections than urban population (52%).
+
+## Problem 2.e.
+
+# The statistic used to describe is "Percentage". A survey  was conducted and the responses were explained in terms of percentage of total sample.
+
+## Problem 2.f.
+
+# Sampling: 3000 people selected from eleven language backgrounds. Though the backgroung is diverse, the exact method is not explicitly mentioned. The article explains demographic data, hence we assume it as cluster sampling/
+
+#SUGGESTED SAMPLING METHOD: Stratrified sampling. Since there are diverse backgrounds, homogenous groups would give a perfect picture. Each group's response will give possible inclination of their group. And aggregation of these responses will reflect the overall sentiment, justifiably.
+
+
+
+
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

@@ -1,0 +1,155 @@
+---
+title: "R Notebook"
+output: html_notebook
+Author: Deexith Reddy
+Date: 12/02/2020
+---
+
+
+
+```{r}
+#PROBLEM 1
+## PROBLEM 1A
+
+#When we say A and B are independent events, this implies that event A does not have an impact on outcome of event B. 
+#Similarily, the probabilitiy of event A happening has no impact on probability of event B happening. Correlating the same, the probabilitiy of event A happening will not have an impact on event B not happening.
+
+## PROBLEM 1B
+A) 1/4 or 0.25 
+B) 0              #Mutually exclusive
+C)1/4 or 0.25
+D)0               #Mutually exclusive
+E)13/20 or 0.65   #P(AUB) = P(A) + P(B) - P(AnB), P(AnB) = 0
+F)2/5 or 0.4      #P(AUB) = P(A) + P(B) - P(AnB), P(AnB) = 0.25
+G)5/8 or 0.625    #P(AnB) = 0.25
+H)0               #P(AnB) = 0, Mutually Exclusive
+
+
+
+```
+
+
+
+```{r}
+#PROBLEM 2
+## PROBLEM 2A
+P(A) = 1/2 or 0.5             #PROBABLITY THAT STOCK OUTPERFORMS
+
+## PROBLEM 2B
+
+P(A) = 0.5  #PROBABLITY STOCK OUTPERFORMS
+P(B) = 0.5  #PROBABLITY STOCK UNDERPERFORMS
+
+#P(C) is probablity that the software is correct
+#P(C') is probablity that the software predicts incorrect
+
+P(c|A) = 0.63 #PROBABLITY SOFTWARE PREDICTS CORRECTLY GIVEN STOCK OUTPERFORMS
+P(c|B) = 0.61 #PROBABLITY SOFTWARE PREDICTS CORRECTLY GIVEN STOCK UNDERPERFORMS
+
+
+#When software predicts that market outperforms and predicts incorrectly is same as the market actually underperformed.So we are given that market underperformed.
+
+#Probablity that the software predicts incorrectly given that market underperformed = P(C'|B)
+
+P(C'|B) = 1-P(c|B) = 1-0.61 = 0.39
+
+## PROBLEM 2C
+#Let Z be the amount of money invested
+#When the market outperforms then the profit will be = (12/100)*Z
+#When the market underperforms then the profit will be = (2/100)*Z
+
+#P(C) is probablity that the software is correct
+#P(C') is probablity that the software predicts incorrect
+
+#When market underperforms:
+#Probablity of the software predicting correct and market outperformed along with incorrect and underperformed:
+= P(CnA) U P(C'nB)
+= P(c/A)P(A) u P(C'/B)P(B)
+=(0.63/2 + 0.39/2)=0.51
+#Weighted average of outperform component: (12/100)*Z*0.51
+
+#When market underperforms:
+#Probablity of the software predicting incorrect and market outperformed along with correct and underperformed: 
+=P(C'nA) U P(CnB)
+= P(c'/A)P(A) u P(C/B)P(B)
+= (0.37/2 + 0.61/2)=0.49
+#Weighted average of underperform component: (2/100)*Z*0.49
+
+#Therefore the equation will be:
+  
+#(12/100)*Z*0.51 + (2/100)*Z*0.49 > 150,000
+
+#Therefore z= $ 2,112,676.06
+
+## PROBLEM 3D
+
+#To invest in each stock, we need to divide the the total amount to be invested by 10. SO we invest $ 212,676.06 in each stock.
+
+```
+
+
+```{r}
+#PROBLEM 3
+## PROBLEM 3A
+1/2 or 0.5
+
+## PROBLEM 3B
+
+#Let x be investment successful in 1st attempt
+#Let y be investment successful in 2nd attempt
+#Let z be investment successful in 3rd attempt
+#Let P(xnynz) be probability of investments being successful
+#Let P(x'ny'nz') be probability of investments not being successful
+#x',y',z' are considered not successful investments
+
+ P(z | (xnynz) u (x'ny'nz')) = 
+     P(z n [(xnynz) u (x'ny'nz')]) /  P((xnynz) u (x'ny'nz'))
+
+ Here,  
+ P(z) n P(x'ny'nz') = 0
+ P(z) n P(xnynz) = P(xnynz)
+     
+   = P (xnynz)/ (P((xnynz) + (x'ny'nz'))
+   = (1/8)/(2/8)
+   = 1/2
+ 
+ ## PROBLEM 3C
+ 
+ P(z | (xnynz') u (xny'nz) u (x'nynz) )
+ 
+= P(z n ((xnynz') u (xny'nz) u (x'nynz)))/P((xnynz') u (xny'nz) u (x'nynz))
+
+Here, 
+ P(z) n P(x'ny'nz') = 0
+ P(z) n P(xny'nz) = 1/8
+ P(z) n P(x'nynz) = 1/8
+ P((xnynz') u (xny'nz) u (x'nynz)) = ((1/8)+(1/8)+(1/8))=3/8
+ THerefore
+ 
+  P(z | (xnynz') u (xny'nz) u (x'nynz) ) = ((1/8)+(1/8))/(3/8)=2/3
+ 
+ ## PROBLEM 3d
+ 
+ #For two independent events z and x: P(znx)=P(z) * P(x)
+ 
+ #LET TWO SUCESSFUL INVESTMENTS = A
+ #Let x be investment successful in 1st attempt
+#Let y be investment successful in 2nd attempt
+#Let z be investment successful in 3rd attempt
+#x',y',z' are considered not successful investments
+ 
+ P(A) = P(xnynB') + P(x'nynB) + P(xny'nB)
+      = (0.845*0.5505*0.6) + (0.155*0.5505*0.4) + (0.845*0.4495*0.4)
+      = 0.40
+ P(B) is Third event being successful
+ 
+ Since, P(A) includes the third investment being successful, these are dependent events.
+      
+ 
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

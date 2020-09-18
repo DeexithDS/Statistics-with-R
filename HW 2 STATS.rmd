@@ -1,0 +1,159 @@
+---
+title: "HOMEWORK 2 SOLUTION"
+output: html_notebook
+author: DEEXITH REDDY
+---
+
+
+
+```
+```{r}
+data("women")
+help("women")
+install.packages("moments")
+```
+#Problem 1
+
+## Problem 1 a
+#There are two variables in this data frame. Each variable represents numeric	Height in inches (in) and numeric	Weight in pounds (lbs).
+
+##Problem 1 b
+
+```{r}
+BMI <- (women[,2]*703)/(women[,1]**2)                   #CALCULATING BMI
+print(BMI)
+
+```
+
+## Problem 1 c
+```{r}
+women$BODY_MASS_INDEX <-BMI                 #CREATING COLUMN "BODY_MASS_INDEX:                                              HAVING BMI 
+print(women)
+
+```
+
+## Problem 1 d
+```{r}
+ARITHMETIC_MEAN <- sum(BMI)/length(BMI)                     #CALCULATING MEAN
+print(ARITHMETIC_MEAN)
+
+SAMPLE_STDEV <- ((sum((women[,3]-ARITHMETIC_MEAN)**2))/(length(BMI)-1))**0.5 
+print(SAMPLE_STDEV)
+
+SAMPLE_SKEWNESS <-((sum((women[,3]-ARITHMETIC_MEAN)**3))/(length(BMI)))/((sum((women[,3]-ARITHMETIC_MEAN)**2))/(length(BMI)-1))**1.5
+print(SAMPLE_SKEWNESS)
+
+SAMPLE_KURTOSIS <-((sum((women[,3]-ARITHMETIC_MEAN)**4))/(length(BMI)))/((sum((women[,3]-ARITHMETIC_MEAN)**2))/(length(BMI)))**2
+print(SAMPLE_KURTOSIS)
+
+
+## Problem 1 e
+##The BMI is skewed. As we plot a Histogram of BMI, it is right skewed. We have a frequency of 8 between BMI 22.0 and 22. The remaining frequencies are distributed between 22.5 and 24.5, showing the skew.
+
+## Problem 1 f
+##The distribution is playtkurtic since the Kurtosis is 2.35 or less than 3. There are only two outliers after BMI of 23.5.
+
+
+# Problem 2
+
+##Problem 2 a
+library(readxl)
+filtered_qb <- read_excel("C:/Users/DEEXITH REDDY/Downloads/filtered_qb.xlsx")
+View(filtered_qb)
+
+##Problem 2 b
+#PROJECTION:
+AVG_PROJECTION <- mean(filtered_qb$projections)          #CALCULATING AVERAGE
+print(AVG_PROJECTION)
+
+STANDARD_DEVIATION <- sd(filtered_qb$projections)       #CALCULATING STANDARD                                                           DEVIATION
+print(STANDARD_DEVIATION)
+
+install.packages("moments")
+library(moments)
+SKEWNESS_PROJECTION <- skewness(filtered_qb$projections)     #CALCULATING                                                                   SKEWNESS
+print(SKEWNESS_PROJECTION)
+
+#Actuals:
+AVG_ACTUALS <- mean(filtered_qb$actuals)                   #CALCULATING AVERAGE
+print(AVG_ACTUALS)
+
+STANDARD_DEV_ACTUALS <- sd(filtered_qb$actuals)            #CALCULATING STANDARD                                                           DEVIATION
+print(STANDARD_DEV_ACTUALS)
+
+library(moments)
+SKEWNESS_ACTUALS <- skewness(filtered_qb$actuals)          #CALCULATING                                                                   SKEWNESS
+print(SKEWNESS_ACTUALS)
+
+hist(filtered_qb$projections)
+hist(filtered_qb$actuals)
+
+#CENTRAL TENDENCY
+#The standard deviation for projections is 2.37 while for actuals is 9.01. This shows that for central tendency is more for projections while it is low for actuals.
+
+#VARIABILITY:
+# The standard deviation for projections is 2.37 while for actuals is 9.01. This shows that for actuals,variability is high while for projections it is low when compared to mean.
+
+#SHAPE:
+#While the distribution of projections is right skewed, the distribution of actuals is skewed on two sides. This is also showed by skewness number of projections which is 1.00 and skewness of actuals is 0.42.
+
+##Problem 2 c
+our.five.sum <- fivenum(filtered_qb$actuals)    #USING FIVENUM FUNCTION
+print(our.five.sum[3])                          #PRINTING MEDIAN
+
+##Problem 2 d
+boxplot(filtered_qb$actuals)                    #BOXPLOT GENERATION
+boxplot(filtered_qb$projections)                #BOXPLOT GENERATION
+
+plot(filtered_qb$actuals,filtered_qb$projections, pch=19, col=c("red","blue"))
+#The plot is fairly accurate. It shows that actuals is spread over the chart, i.e, the spread and deviation from mean is more(red colour).While for projections,deviation and spread is less since the points are around the mean(blue colour).
+
+hist(filtered_qb$actuals)                         #HISTOGRAPH GENERATION
+hist(filtered_qb$projections)                     #HISTOGRAPH GENRATION
+
+hist(filtered_qb$actuals, breaks = 10)            #HISTOGRAPH WITH BREAKS = 10
+hist(filtered_qb$actuals, breaks = 30)            #HISTOGRAPH WITH BREAKS = 30 
+
+# Problem 3
+
+##Problem 3 a
+
+random <- rnorm(n=4, mean=0, sd=10)                  #RANDOM SET GENERATION
+print(random)
+
+##Problem 3 b 
+s = ((sum((random[])**2))/(length(random)-1))**0.5  #SAMPLE STANDARD DEVIATION
+print(s)                                            # MEAN = 0, not included
+
+##Problem 3 c
+s = ((sum((random[])**2))/(length(random)))**0.5   #POPULATION STANDARD                                                           DEVIATION
+print(s)                                           # MEAN = 0, not included
+
+## PROBLEM 3 d
+
+record <- list(matrix(nrow = 10, ncol = 6,byrow = TRUE)     #MATRIX TO STORE     
+dimnames(record) = list(c(R1,R2,R3,R4,s1,s2))                      
+
+for (a in 1:10)                               #FOR LOOP FOR GENRATING 10 SETS
+{
+list1 <- c(rnorm(n=4, mean=0, sd=10))        #VARIABLE FOR RANDOM NUMBER SET
+print(list1)
+ 
+s1 <- c(((sum((list1)**2))/(length(list1)-1))**0.5)    #SAMPLE STANDARD                                                               DEVIATION
+print(s1)                                             # MEAN = 0, not included
+
+s2 <- c(((sum((list1)**2))/(length(list1)))**0.5)         #POPULATION STANDARD                                                            DEVIATION
+print(s2)                                           #MEAN = 0, not included
+ 
+list1 <- c(list1, s1, s2)
+ 
+record[a,] <- c(list1)
+
+}
+
+print(record)
+
+## PROBLEM 3 e
+
+#The sample standard deviation is closer to the 10 whenever both, population and sample standard deviations go above 10. When both the standard deviations are below 10, the population standard deviation is closer. When the population standard deviation is more than 10 and sample standard deviation is lesser than 10, then sample standard deviation is closer to 10. Hence, in all cases the factor of (n-1) in denominator is weighing in and causes sample standard deviation closer to 10.
+

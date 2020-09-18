@@ -1,0 +1,267 @@
+---
+title: "R Notebook"
+output: html_notebook
+Author: Deexith Reddy
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+#ANSWER 1
+
+##ANSWER 1A
+#4. A risk-averse person would always prefer a greater, non-guaranteed reward to a lesser,
+#but guaranteed reward. 
+#A risk-averse person will check for the stock with lesser risk and guaranteed reward. Hence, less volatility and higher expected return with lesser spread.
+```
+
+
+```{r}
+
+##ANSWER 1B
+#2. Small-cap stocks
+
+```
+
+```{r}
+##ANSWER 1C
+#3. Treasury bonds have earned a higher return than corporate bonds. Treasury bonds and bills have lesser return than equity.
+
+```
+
+```{r}
+##ANSWER 1D
+#3. The one with a greater variance of returns. Variance of return is imortant as greater variance, greater is the risk. This effect is more than the other mentioned choices.
+```
+
+
+```{r}
+##ANSWER 1E
+# C AND B are not dominated by any other stock.
+
+#C is dominant over E since it has lesser standard deviation and risk with same expected value or return.
+#C is dominant over D since it has same standard deviation but more expected value or return.
+#Therefore, D and E are eliminated.
+
+#B has lesser risk/standard deviation and more expected value/return. Hence, B is dominant over A.
+#A is eliminated.
+
+#We cannot quantify and conclude which is dominant between B and C from the figure.
+
+```
+
+```{r}
+##ANSWER 1F
+#Let P be correlation coefficient
+#Let X be volatility of first stock
+#Let Y be volatility of second stock
+#Let C be the covariance of the two stocks
+
+C<-0.033
+X<-0.31
+Y<-0.34
+P=(C/(X*Y))
+Z<-round(P,3) #Rounding of Correlation Coefficient to 2 decimal places
+print(Z)
+```
+```{r}
+##ANSWER 1G
+#Let P be correlation coefficient
+#Let X be list of  stock returns
+#Let Y be list of market returns
+#Let C be the covariance of the stock and market index returns
+#Let A be the standard deviation of the  stock returns
+#Let B be the standard deviation of the  market index returns
+
+X = c(0.1,0.03,0.12)
+Y = c(0.05,0.12,0.08)
+C = cov(X,Y)
+A = sd(X)
+B = sd(Y)
+
+P<-round(C/(A*B),3)  #Rounding to three decimal places
+print(P)
+```
+
+```{r}
+##ANSWER 1H
+#Let P be correlation coefficient of stock and market
+#Let X be standard deviation of market index
+#Let Y be standard deviation of stock
+#Let B be the beta of the the stock with respect to market
+#Let C be covariance of stock and market
+
+#B=(c/X^2)
+#C=B*x^2
+#P=(C/(X*Y))
+#C=P*X*Y
+
+#SUBSTITUTING FOR C and reducing the terms
+#B=(P*(Y/X))
+
+X<-0.18
+Y<-0.21
+P<-0.89
+B=(P*(Y/X))
+Z<-round(B,2) #Rounding of beta to 2 decimal places
+print(Z)
+```
+
+
+```{r}
+##ANSWER 1I
+
+#Let X be list of stock returns
+#Let Y be list of market index returns
+#Let C be covariance of stock and market
+#Let S be the standard deviation of Y
+#Let B be beta
+
+X <- c(0.02,0.02,0.14,0.08)
+Y <- c(0.02,0.08,0.09,0.02)
+C<-cov(X,Y)
+S<-sd(Y)
+
+B<-round(C/(S^2),3) #Rounding to three decimal places
+print(B)
+```
+
+```{r}
+##ANSWER 1J
+AAPL <- read.csv("C:/Users/DEEXITH REDDY/Desktop/HW/STATS/HW 6/AAPL.csv",header=TRUE)
+
+
+AAPL[is.na(AAPL)] = 0           #Filling NA value with zero
+
+x<-AAPL$AAPL.close..adjusted.for.splits.
+y<-AAPL$AAPL.dividend
+a<-AAPL$S.P500.close..Including.dividends.
+
+
+
+z<-(x+y)                         #Return including dividend
+
+AAPL$Return_Including_Dividend<-z
+
+b<- vector()
+c<- vector()
+
+d<-1:60
+for (i in d)
+  
+{ b[i+1]=((z[i+1]-z[i])/(z[i]))  #Calculating the return for stock
+  c[i+1]=((a[i+1]-a[i])/(a[i]))  #Calculating the return for market
+}
+
+
+e<-2:61
+for (i in e)
+  
+{ b[i-1]=b[i]                #Removing the first NA value
+  c[i-1]=c[i]                #Removing the first NA value
+}
+print(b)
+print(c)
+
+AAPL$RETURN_STOCK<-b
+AAPL$RETURN_MARKET<-c
+
+k<-cor(b,c)
+l<-round(k,3)
+print(l)
+
+```
+
+```{r}
+##ANSWER 1K
+
+AAPL <- read.csv("C:/Users/DEEXITH REDDY/Desktop/HW/STATS/HW 6/AAPL.csv",header=TRUE)
+
+
+AAPL[is.na(AAPL)] = 0            #Filling NA value with zero
+
+
+x<-AAPL$AAPL.close..adjusted.for.splits.
+y<-AAPL$AAPL.dividend
+a<-AAPL$S.P500.close..Including.dividends.
+
+AAPL$Return_Including_Dividend<-z
+
+z<-(x+y)                         #Return including dividend
+
+
+b<- vector()
+c<- vector()
+
+d<-1:60
+for (i in d)
+  
+{ b[i+1]=((z[i+1]-z[i])/(z[i]))  #Calculating the return for stock
+  c[i+1]=((a[i+1]-a[i])/(a[i]))  #Calculating the return for market
+}
+
+
+e<-2:61
+for (i in e)
+  
+{ b[i-1]=b[i]                #Removing the first NA value
+  c[i-1]=c[i]                #Removing the first NA value
+}
+print(b)
+print(c)
+
+AAPL$RETURN_STOCK<-b
+AAPL$RETURN_MARKET<-c
+
+m<-sd(b)
+n<-sd(c)
+
+k<-cor(b,c)*(m/n)
+l<-round(k,2)
+print(l)
+
+
+```
+
+```{r}
+##ANSWER 1L
+#2 is incorrect. A correlation coefficient of 1 does not necessarily mean beta is 1. It depends on the ratio of standard deviations. More standard deviation in stock than market, greater is beta. If standard deviation of stock is less than market, beta will be lower.
+```
+
+```{r}
+##ANSWER 1m
+#2 is incorrect.When we substitute in the combined standard deviation formula, the combined standard deviation will be equal to weighted average only when the two stocks are perfectly correlated.
+
+#sd(R1,R2)=((x1*sd(R1))^2 + (x1*sd(R1))^2 + 2*x1*x2*P*sd(R1)*sd(R2))^0.5, where P is correlation coefficiect
+
+#For uncorrelated, P=0, sd(R1,R2)=((x1*sd(R1))^2 + (x1*sd(R1))^2)^0.5
+#For perfectly correlated, P=1, sd(R1,R2)=((x1*sd(R1))^2 + (x1*sd(R1))^2 + 2*x1*x2*sd(R1)*sd(R2) )^0.5 = x1*sd(R1) + x2*sd(R2),
+#                                                                                                        by a^2 + b^2 + 2*a*b = (a+b)^2
+```
+
+```{r}
+##ANSWER 1n
+
+#Let Z be standard deviation of portfolio returns
+#Let C be value of first stock invested
+#LEt D be value of second stock invested
+#Let A be weighting factor of first stock
+#Let B be weighting factor of second stock
+#Let X be annual volatility of first stock
+#Let Y be annual volatility of second stock
+#Let P be correlation coefficient
+
+C<-20000
+D<-38000
+X<-0.4
+Y<-0.38
+A<-(C/(C+D))
+B<-(D/(C+D))
+P<-0.1
+Z<-round(sqrt((((A*X)^2)+((B*Y)^2)+(2*A*B*P*X*Y))),2) #Rounding to two decimal places
+print(Z)
+
+```
+

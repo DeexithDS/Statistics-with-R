@@ -1,0 +1,202 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+#ANSWER 1
+##ANSWER 1 A
+# The probability of task being completed in 17 minutes or more is equal to 1 minus probability of task being completed in less than or equal to 16 minutes.
+#P(X>=17)=1-P(x<=16)  #X is no. of minutes
+
+q=17
+a<-punif(q, min = 10, max = 25, lower.tail = TRUE, log.p = FALSE)
+z=1-a
+print(z)
+
+```
+```{r}
+##ANSWER 1 B
+# The probability of task being completed in after seventeen minutes given that it was completed in twenty minutes:
+#P(x>=17|20)=(P(X>=17)nP(X>=20))/P(x>=20)          #WE CONSIDER MAXIMUM AS 20, MINIMUM AS 10         #X is no. of minutes
+#            =(20-17)/(20-10)
+#            =3/10
+a<-20
+t<-17
+b<-10
+P<-(a-t)/(a-b)
+print(P)
+
+
+```
+
+```{r}
+##ANSWER 1 C
+#MEAN = (a+b)/2=20  #b is maximum, a is minimum
+#VARIANCE=((b-a)^2)/12=18.75
+# We find a and b using linear algebra equations:
+
+#(a+b)=40
+#(b-a)=15 
+#2b=55 
+#b=27.5 
+#a=12.5 
+#MAXIMUM = 27.5
+#MINIMUM = 12.5
+```
+
+
+```{r}
+#ANSWER 2
+##ANSWER 2A
+#Expected arrivals: (ARRIVALS/MINUTE)* NO. OF MINUTES
+#A=ARRIVALS/MINUTE
+#B=NO. OF MINUTES
+#E=EXPECTED VEHICLES
+
+A=7
+B=30
+E=A*B
+print(E)  #210
+```
+
+
+```{r}
+##ANSWER 2B
+#Expected arrivals: (ARRIVALS/MINUTE)* NO. OF MINUTES
+#A=ARRIVALS/MINUTE
+#B=NO. OF MINUTES
+#E=EXPECTED VEHICLES
+
+A=4
+B=30
+E=A*B
+print(E)  #120
+```
+```{r}
+##ANSWER 2C
+#z=P(X>19) = 1 - P (X<=19)            #X is no. of cars
+q=19  #No. pf cars for which probabilty is to be calculated
+a=7 #Cars per minute
+b=3 #Interval time
+l= a*b #Cars in that interval
+z<-1-ppois(q,l, lower.tail = TRUE, log.p = FALSE)
+print(z)    #ANSWER=0.6157372
+```
+
+
+```{r}
+##ANSWER 2d
+#z=P(T=4)*P(C<12)=P(T=4)*P(C<=11),  #T is no. of trucks, C is no. of cars
+
+t<-4  #No. of trucks for which probabilty is to be calculated
+c<-4 #Trucks per minute
+d<-2 #Interval time
+f<-c*d
+p<-dpois(t,f,log = FALSE)
+
+q=11  #No. of cars for which probabilty is to be calculated
+a=7 #Cars per minute
+b=2 #Interval time
+l= a*b #Cars in that interval
+m<-ppois(q,l, lower.tail = TRUE, log.p = FALSE)
+z<-p*m
+print(z)    #ANSWER=0.01488
+
+```
+```{r}
+##ANSWER 2e
+a<-dpois(1:39,21)
+b<-dpois(1:39,12)
+c<-rev(b)
+P<-sum(a*c)
+print(P)
+```
+
+```{r}
+##ANSWER 2f
+
+a=7 #Cars per minute
+b=4 #Trucks per minute
+t=3 #Time
+z=(a+b)*t #Lambda=Mean=Expected
+s=z^(1/2) #STANDARD DEVIATION: (LAMBDA)^1/2
+print(s) #ANSWER=5.744
+    
+```
+```{r}
+#ANSWER 3
+##ANSWER 3A
+#P(X>4) = 1 - P(X<=4)
+#       = 1 - ppois(q,Lambda,lower.tail=True,log.p=False)
+
+a=1/2 #AVERAGE PER HOUR
+b=8   #TIME PERIOD
+e=a*b #LAMBDA OR EXPECTATION
+q=4  
+z<-1-(ppois(q,e,lower.tail=TRUE,log.p=FALSE))
+print(z) #ANSWER=0.3711631
+
+
+
+```
+
+
+```{r}
+##ANSWER 3B
+#The following occurs when a computer crashes:One mandatory program being affected and the remaining following binomial distribution. Hence, we subtract 1 from the selection of events. 
+
+#If x is the crash number occuring, then:
+
+#Probablity mass function:P(X=x)= dbinom(x-1,4,0.5,log=FALSE) if x=2,3,4,5
+#                         P(X=1)=1
+```
+
+
+```{r}
+
+##ANSWER 3C
+#Expected programs in 1 crash: (1 + np), n=4, p=0.5
+#Expected programs in 1 day: (8*(1/2))*(1+(4*0.5))
+
+n=4
+p=0.5
+E<-(1+(n*p))*(4)
+print(E)
+```
+
+
+
+```{r}
+
+##ANSWER 3D
+#Expectation of computer crashing in 5 day, eight hour period: (5*8*(1/2))= 20
+#Expectation of program being afffected: (1 + np):(1+(4*0.5))= 3
+#Probablity of computer crashing in certain 'n' minutes: x
+#To find out n: qnorm(x,30,10,lower.tail=TRUE,log.p=FALSE)
+# Therefore, amount of money to that could be charged:
+c<-150*qnorm(x,30,10,lower.tail=TRUE,log.p=FALSE)*(5*(1/2)*8)*(1+(4*0.5))    
+#TOTAL AMOUNT=RATE*Number of minutes*Expectation of computer crashing*Expectation of program affecting)
+
+```
+
+```{r}
+##ANSWER 3E
+z<-qnorm(0.25, mean = 30, sd = 10, lower.tail = TRUE, log.p = FALSE) 
+print(z)
+
+```
+
+
+
+
+
+
+
+
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

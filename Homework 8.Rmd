@@ -1,0 +1,206 @@
+---
+title: "R Notebook"
+output: html_notebook
+Author: Deexith Reddy
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+#ANSWER 1
+
+##ANSWER 1A
+
+##Since SD is not given, we use T- Distribution
+times=c(13.2, 19, 2, 3, 7.4, 32.1, 8, 1, 3.4, 7.4, 8.9, 30.2, 17.2)
+SE=sd(times)/sqrt(13)
+UB = mean(times)+SE*qt(0.925,df=12)
+LB = mean(times)-SE*qt(0.925,df=12)
+
+print(UB)
+print(LB)
+
+```
+```{r}
+##ANSWER 1B
+
+##Since SD is given, we use Z- Distribution
+times=c(13.2, 19, 2, 3, 7.4, 32.1, 8, 1, 3.4, 7.4, 8.9, 30.2, 17.2)
+SE = 10/sqrt(13)
+UpperBound=qnorm((1-((1-0.85)/2)),mean(times),sd=SE)
+LowerBound=qnorm(((1-0.85)/2),mean(times),sd=SE)
+
+print(UpperBound)
+print(LowerBound)
+
+```
+```{r}
+##ANSWER 1C
+##Since we do not know the distribution, we use bootstrapping.
+
+times=c(13.2, 19, 2, 3, 7.4, 32.1, 8, 1, 3.4, 7.4, 8.9, 30.2, 17.2)
+means <- replicate(1000,mean(sample(times,10,replace=TRUE)))
+diff <- means - mean(times)
+diff_15 = quantile(diff,prob=0.075)
+diff_85 = quantile(diff,prob=0.925)
+a<-mean(times)+diff_15
+b<-mean(times)+diff_85
+print(a)
+print(b)
+
+```
+```{r}
+##ANSWER 1D
+
+##ANSWER 1C
+##We use bootstrapping.n is small and we do not know SD.
+
+times=c(13.2, 19, 2, 3, 7.4, 32.1, 8, 1, 3.4, 7.4, 8.9, 30.2, 17.2)
+means <- replicate(1000,mean(sample(times,10,replace=TRUE)))
+diff <- means - mean(times)
+diff_15 = quantile(diff,prob=0.075)
+diff_85 = quantile(diff,prob=0.925)
+a<-mean(times)+diff_15
+b<-mean(times)+diff_85
+print(a)
+print(b)
+```
+```{r}
+#ANSWER 2
+##ANSWER 2A
+
+b<-243      #Number working
+a<-250-b    #Number not working
+p<-a/250    #Proportion not working
+n<-250
+n*p>=5
+n*(1-p)>=5
+
+SEP=sqrt(p*(1-p)/n)
+UpperBound=qnorm(0.975,mean=p,sd=SEP)
+LowerBound=qnorm(0.025,mean=p,sd=SEP)
+
+print(UpperBound)
+print(LowerBound)
+
+```
+
+```{r}
+##ANSWER 2B
+
+b<-170    #Number working
+a<-250-b  #Number not working
+p<-a/250  #Proportion not working
+n<-250
+n*p>=5
+n*(1-p)>=5
+
+SEP=sqrt(p*(1-p)/n)
+UpperBound=qnorm(0.975,mean=p,sd=SEP)
+LowerBound=qnorm(0.025,mean=p,sd=SEP)
+
+print(UpperBound)
+print(LowerBound)
+
+```
+```{r}
+#ANSWER 3
+##ANSWER 3A
+
+##Since we know that atleast 10% of the population have pet insurance, the probability that true population proportion of pet owners having insurance above 0.1 is equal 1.
+```
+
+
+```{r}
+##ANSWER 3B
+
+##Let X be the point of estimate
+#0.23 = X - Z*(sqrt(p(1-p)/n))
+#0.31 = X + Z*(sqrt(p(1-p)/n))
+
+##Adding and solving for X, we get:
+##2X=0.54
+##X=0.27
+
+p<-0.27
+n<-1000
+SE <- sqrt(p*(1-p)/n)
+print(SE)
+
+##Probability that the proportion lies between the the two limits is:
+
+##P(0.23<p<0.31)
+
+q <- pnorm(0.31,p,SE)- pnorm(0.23,p,SE) 
+print(q)
+
+
+```
+
+
+
+```{r}
+##ANSWER 3C
+
+##We need to find the probability that the proportion of pet insurance is less tham 0.1
+
+##P(p<0.1)
+
+p<-0.27
+n<-100
+SE <- sqrt(p*(1-p)/n)
+q <- pnorm(0.1,p,SE)
+print(q)
+
+```
+
+```{r}
+
+##ANSWER 3D
+
+#At wconfidence interval is the proportion greater that 0.1
+p<-0.3
+n<-100
+SE <- sqrt(p*(1-p)/n)
+q <- 1-pnorm(0.1,p,SE)
+print(q)
+
+
+```
+
+```{r}
+#ANSWER 4
+##ANSWER 4A
+
+##For a distribution, the width increases as the the standard deviation keeps increasing. Hence, for this problem, the maximum standard deviation gives the maximum width.
+
+n <- 30                        #Sample size
+SD <- 20000                    #SD is standard deviation
+w <- 2*qnorm(0.95)*SD/sqrt(n)  #w is width
+print(w) 
+
+```
+```{r}
+##ANSWER 4B
+
+##Company will to pay:
+
+## $20000 + 100*(qnorm(0.95)*SD/sqrt(n))
+
+##n*1950 = $20000 + 100*(qnorm(0.95)*SD/sqrt(n)), since each assignment costs $1950.
+
+##On solving n, we can get the numberof houses.
+```
+
+
+```{r}
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

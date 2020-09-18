@@ -1,0 +1,411 @@
+---
+title: "R Notebook"
+output: html_notebook
+Author: Deexith Reddy
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+#ANSWER 1
+#Let a be the mean of the sample
+#Let s be the standard deviation of the population
+#Let n be the sample size
+#Let error be the error calculated
+#Let p be the left/lower limit of the confidence interval
+#Let r be the right/upper limit of the confidence interval
+
+##ANSWER 1A
+#For 95% interval, we do qnorm of (1-(1-0.95)/2) and assign this to variable v.
+
+a <- 59
+s <- 4
+n <- 100
+v<-(1-(1-0.95)/2)
+error <- qnorm(v)*s/sqrt(n)
+p <- a-error
+q <- a+error
+za <- c(p,q)
+print(za)
+print(p-q)
+```
+
+
+```{r}
+##ANSWER 1B
+#For 90% interval, we do qnorm of (1-(1-0.90)/2) and assign this to variable v.
+
+a <- 59
+s <- 4
+n <- 100
+v<-(1-(1-0.90)/2)
+error <- qnorm(v)*s/sqrt(n)
+p <- a-error
+q <- a+error
+zb <- c(p,q)
+print(zb)
+print(p-q)
+```
+
+```{r}
+##ANSWER 1C
+#For 99% interval, we do qnorm of (1-(1-0.99)/2) and assign this to variable v.
+a <- 59
+s <- 4
+n <- 100
+v<-(1-(1-0.99)/2)
+error <- qnorm(v)*s/sqrt(n)
+p <- a-error
+q <- a+error
+zc <- c(p,q)
+print(zc)
+print(p-q)
+```
+
+
+
+```{r}
+##ANSWER 1D
+#For 95% interval, we do qnorm of (1-(1-0.95)/2) and assign this to variable v.
+
+a <- 59
+s <- 4
+n <- 25
+v<-(1-(1-0.95)/2)
+error <- qnorm(v)*s/sqrt(n)
+p <- a-error
+q <- a+error
+zd <- c(p,q)
+print(zd)
+print(p-q)
+```
+```{r}
+##ANSWER 1E
+#For 95% interval, we do qnorm of (1-(1-0.95)/2) and assign this to variable v.
+
+a <- 59
+s <- 4
+n <- 400
+v<-(1-(1-0.95)/2)
+error <- qnorm(v)*s/sqrt(n)
+p <- a-error
+q <- a+error
+ze <- c(p,q)
+print(ze)
+print(p-q)
+```
+
+```{r}
+##ANSWER 1F
+#For 95% interval, we do qnorm of (1-(1-0.95)/2) and assign this to variable v.
+
+a <- 59
+s <- 1
+n <- 100
+v<-(1-(1-0.95)/2)
+error <- qnorm(v)*s/sqrt(n)
+p <- a-error
+q <- a+error
+zf <- c(p,q)
+print(zf)
+print(p-q)
+```
+
+```{r}
+##ANSWER 1G
+#For 95% interval, we do qnorm of (1-(1-0.95)/2) and assign this to variable v.
+
+a <- 59
+s <- 16
+n <- 100
+v<-(1-(1-0.95)/2)
+error <- qnorm(v)*s/sqrt(n)
+p <- a-error
+q <- a+error
+zg <- c(p,q)
+print(zg)
+print(p-q)
+
+```
+
+
+```{r}
+##ANSWER 1H
+
+#A and B
+#A->[58.21601,59.78399] ,B->[58.34206 59.65794]
+#Since we need only 90% confidence interval, the lower limit increases and moves closer to mean and the upper limit drecreases and moves closer towards the mean. The confidence interval becomes smaller since we are decreasing the certainity from 0.95 to 0.90. The tails of distribution become bigger, leaving 0.05 on each side.
+
+#A and C
+#A->[58.21601,59.78399, Difference=1.56] ,C->[57.96967 60.03033, Difference=2.06]
+#The confidence interval becomes bigger since we are increasing the certainity from 0.95 to 0.99. Hence the difference between the upper and lower limit increase from 1.56 to 2.06. THe tails become smaller from 0.025 to 0.001 on each side.
+
+#A and D
+#A->[58.21601,59.78399, Difference=1.56] ,D->[ 57.43203, 60.56797 Difference=3.13]
+#Here the sample size is reduced from 100 to 25. As sample size reduces, the distribution tends to be deviating from normal distribution shape, with the values being farther from the mean. As more values get away from the mean, the range of values (interval) increases and the difference between limits increases, for same confidence.
+
+#A and E
+#A->[58.21601,59.78399, Difference=1.56] ,E->[ 58.60801, 59.391997 Difference=-0.783]
+#Here the sample size is reduced increased from 100 to 400.As sample size increase, the distribution tends to be closer to normal distribution, with the values being closer to the mean. As more values get closer to the mean, the range of value (interval) shrinks and the limits become smaller, for same confidence.
+
+#A and F
+#A->[58.21601,59.78399, Difference=1.56] ,F->[ 58.804, 59.196 Difference=-0.391]
+#As standard deviation decreases, the error decreases.
+
+#Mean Limits = Population mean +/- (Crtical Value*Population Standard Deviation/sqrt(sample size))
+
+#Hence, from the above formula, we can see that when the sample standard deviation decreases, the error decreases. This in turn leads to decrease in the difference between the limits. Also, as error decreases, the interval range is smaller for same confidence.
+
+#A and G
+#A->[58.21601,59.78399, Difference=1.56] ,G->[ 55.864,62.135 Difference=6.271]
+#As standard deviation increases, the error increases.
+
+#Mean Limits = Population mean +/- (Crtical Value*Population Standard Deviation/sqrt(sample size))
+
+#Hence, from the above formula, we can see that when the sample standard deviation increases, the error increases. This in turn leads to increase in the difference between the limits. Also, as error increases, the interval range is bigger for same confidence.
+
+```
+
+
+```{r}
+#ANSWER 2
+
+print(Sample_Standard_Deviation<- 10000/sqrt(10)) 
+##ANSWER 2A
+set.seed(234234)
+n=10                         #Sample Size
+x <- rnorm(n,120000,10000)   #Random genearation of normal distribution for sample size
+p <- mean(x)
+print(p)                     #Sample Mean
+q <- sd(x)                  
+print(q)                     #Sample Standard Deviation
+plot(hist(x),xlab='Salary')
+
+#The distribution is normal. Mean is 119750.6, SD is 4848.94.
+
+
+```
+```{r}
+
+##ANSWER 2B
+set.seed(234234)
+k <- 1000                   #Replication number
+n=10                        #Sample Size
+x <- replicate(k,rnorm(n,120000,10000)) 
+#Random genearation of normal distribution for sample size
+
+
+
+col_means_calculated <- colMeans(x)
+#col_means_calculated
+mean(col_means_calculated)  #Samples Means
+sd(col_means_calculated)    #Samples SD
+
+hist(col_means_calculated,xlab='Salary')
+
+#The distribution is normal with mean $ 119980.2 and Standard Deviation of $ 3129.992.
+
+#As we take average of proportions over more samples, the frequency of the mean is the highest. Moreover, the distribution tends to be normal. Hence, this proves that as the sample points is higher, the distribution tends to be normal with highest freuency closr to mean.
+
+#The standard devaitaion is coming closer to the calculated sample standard deviation of 3162.278. Difference = 3162.278-3129.992= 32.289.Hence, increase in samples will show more of sample charateristics.
+
+#As we can see, with a large sample of means, the distribution becomes more normal. With increase in the samples, the error decreases, shrinking the distribution to be normal.
+```
+
+```{r}
+
+##ANSWER 2C
+set.seed(234234)
+k <- 10000                   #Replication number
+n=10                         #Sample Size
+x <- replicate(k,rnorm(n,120000,10000)) 
+#Random genearation of normal distribution for sample size
+
+
+
+col_means_calculated <- colMeans(x)
+#col_means_calculated
+mean(col_means_calculated)   #Samples Means
+sd(col_means_calculated)     #Samples SD
+
+hist(col_means_calculated,xlab='Salary')
+
+#The distribution is normal with mean $119955.8 and Standard Deviation of $3154.346.
+
+#As we take average of proportions over more samples, the frequency of the mean is the highest. Moreover, the distribution tends to be normal. Hence, this proves that as the sample points is higher, the distribution tends to be normal with highest freuency closer to mean.
+
+#The standard devaitaion is coming closer to the calculated sample standard deviation of 3162.278, Difference = 3162.278-3154.346 = 7.932.Hence, increase in samples will show more of sample charateristics.
+
+#As we can see, with a large sample of means, the distribution becomes more normal. With increase in the samples, the error decreases, shrinking the distribution to be normal.
+```
+```{r}
+##ANSWER 2D
+set.seed(234234)
+k <- 100000                  #Replication number
+n=10                         #Sample Size
+x <- replicate(k,rnorm(n,120000,10000)) 
+#Random genearation of normal distribution for sample size
+
+
+
+col_means_calculated <- colMeans(x)
+#col_means_calculated
+mean(col_means_calculated)   #Samples Means
+sd(col_means_calculated)     #Samples SD
+
+hist(col_means_calculated,xlab='Salary')
+
+#The distribution is normal with mean $119990.6 and Standard Deviation of $3162.752.
+
+#As we take average of proportions over more samples, the frequency of the mean is the highest. Moreover, the distribution tends to be normal. Hence, this proves that as the sample points is higher, the distribution tends to be normal with highest freuency closer to mean.
+
+#The standard devaitaion is coming closer to the calculated sample standard deviation of 3162.278, Difference = 3162.278-3162.752 = -0.474.Hence, increase in samples will show more of sample charateristics.
+
+#As we can see, with a large sample of means, the distribution becomes more normal. With increase in the samples, the error of means decreases, shrinking the distribution to be normal.
+```
+
+```{r}
+##ANSWER 2E
+print(Sample_Standard_Deviation<- 10000/sqrt(30))
+set.seed(234234)
+n=30                         #Sample Size
+x <- rnorm(n,120000,10000)   #Random genearation of normal distribution for sample size
+p <- mean(x)
+print(p)                     #Sample Mean
+q <- sd(x)                  
+print(q)                     #Sample Standard Deviation
+plot(hist(x),xlab='Salary')
+
+#The distribution is not normal. Mean is 118682.2, SD is 8897.842.
+
+#When we increased the number of samples for n=10, the samples became closer to the sample charateristice of SD(s) = SD(p)/sqrt(10).
+
+#When we increased the sample size from n=10 (SD=4848.94) to n=30 (SD=8897.84), the SD increased and is closer to the population SD of 10000.
+
+#Hence, this shows that increase in the number of samples of same sample size makes the samples to behave more like sample parameters. But increasing the sample size makes the sample behave more closer to the population. 
+
+```
+
+```{r}
+##ANSWER 2F
+print(Sample_Standard_Deviation <- 10000/sqrt(30))
+set.seed(234234)
+k <- 100000                  #Replication number
+n=30                        #Sample Size
+x <- replicate(k,rnorm(n,120000,10000)) 
+#Random genearation of normal distribution for sample size
+
+
+
+col_means_calculated <- colMeans(x)
+#col_means_calculated
+mean(col_means_calculated)   #Samples Means
+sd(col_means_calculated)     #Samples SD
+
+hist(col_means_calculated,xlab='Salary')
+
+#The distribution is normal with mean $119998.5 and Standard Deviation of $1822.805.
+
+#The standard devaitaion is coming closer to the calculated sample standard deviation of 1825.742, Difference = 1825.742-1822.805 = 2.9. Hence, increase in samples will show more of sample charateristics.
+
+#As we can see, with a large sample of means, the distribution becomes more normal. With increase in the samples, the error decreases, shrinking the distribution to be normal.
+
+#But, the samples will show sample charecteristics and less population charecteristics.
+
+
+```
+
+```{r}
+#ANSWER 3
+#Let n be the total number of motherboards
+#Let m be the proportion and the population mean
+#Let v be the proportion used for error calculation
+#Let p and q be limits of proportion
+#Let i and j be limits of mean of defects
+
+##ANSWER 3A
+n <- 150
+m <- (20/n)
+print(m)      #Proportion
+s <- sqrt(m*(1-m)/n)
+print(s)      #Population standard deviation
+
+v<-(1-(1-0.95)/2)
+error <- qnorm(v)*s
+p <- m-error
+q <- m+error
+i<-p*n
+j<-q*n
+za <- c(p,q) #Confidence limits of proportion
+print(za)
+ya <- c(i,j) #Confidence limits of mean defects
+print(ya)
+```
+```{r}
+##ANSWER 3B
+n <- 300
+m <- (40/n)
+print(m)      #Proportion
+s <- sqrt(m*(1-m)/n)
+print(s)      #Population standard deviation
+
+v<-(1-(1-0.95)/2)
+error <- qnorm(v)*s
+p <- m-error
+q <- m+error
+i<-p*n
+j<-q*n
+zb <- c(p,q) #Confidence limits of proportion
+print(zb)
+yb <- c(i,j) #Confidence limits of mean defects
+print(yb)
+```
+```{r}
+
+##ANSWER 3C
+#Let ss be sample standard deviation
+#Let n_samples be the samples taken
+#Let x be replication of sample size 100, 1000 times.
+set.seed(234234)
+n_samples <- 1000
+n <- 100
+m <- 0.3
+s <- sqrt(m*(1-m)/n)
+x <- replicate(n_samples, rnorm(n,m,s))
+
+col_means_calculated <- colMeans(x)
+#col_means_calculated
+mean(col_means_calculated)
+sd(col_means_calculated)
+
+hist(col_means_calculated)
+
+#The sampling distribution looks normal. As we take average of proportions over 1000 samples, the frequency of the mean is the highest. Moreover, the distribution tends to be normal. Hence, this proves that as the sample points is higher, the distribution tends to be normal with highest freuency closr to mean.
+
+```
+```{r}
+##ANSWER 3D
+#Let ss be sample standard deviation
+#Let n_samples be the samples taken
+#Let x be replication of sample size 100, 1000 times.
+set.seed(234234)
+n_samples <- 1000
+n <- 100
+m <- 0.005
+s <- sqrt(m*(1-m)/n)
+
+x <- replicate(n_samples, rnorm(n,m,s))
+
+col_means_calculated <- colMeans(x)
+#col_means_calculated
+mean(col_means_calculated)
+sd(col_means_calculated)
+
+hist(col_means_calculated)
+
+#The sampling distribution looks normal. As we take average of proportions over 1000 samples, the frequency of the mean is the highest. Moreover, the distribution tends to be normal. Hence, this proves that as the sample points is higher, the distribution tends to be normal with highest freuency closr to mean.
+```
+
+

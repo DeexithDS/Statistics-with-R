@@ -1,0 +1,325 @@
+---
+title: "R Notebook"
+output: html_notebook
+Author: Deexith Reddy
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+
+#ANSWER 1
+##ANSWER 1A
+
+##Null Hypothesis
+##H0: THe daily demand for propane tanks will be greater than   162 tanks per day.
+
+```
+
+```{r}
+##ANSWER 1B
+
+##Alternate Hypothesis
+##H1: THe daily demand for propane tanks will be less than or equal to  162 tanks per day.
+
+```
+
+```{r}
+##ANSWER 1C
+
+## The mu0  will be 162
+```
+
+```{r}
+##ANSWER 1D
+
+##The  population parameter that the statistic test concerned with is the daily demand. 
+
+```
+
+
+```{r}
+##ANSWER 1E
+
+#The sample statistic of mean tanks sold over period of 32 days is used.
+
+```
+
+```{r}
+##ANSWER 1F
+
+#We use parametric testing. We assume the distribution to be normal, as shown from below histogram. Parametric testing has less p-value and greater statistical power.
+
+y<-rnorm(32,mean=150.8,sd=50.3)
+hist(y)
+
+```
+
+```{r}
+##ANSWER 1G
+x<-150.8
+m<-162
+s<-50.3
+n<-32
+
+z<-(x-m)/(s/sqrt(n))
+
+
+zplus<-qnorm((1-((1-0.9)/2)),mean=0,sd=1)
+zminus<-qnorm(0.05,mean=0,sd=1)
+
+tplus<-qt(0.90,df=31)
+tminus<-qt(0.10,df=31)
+
+##Z Test
+z1<-m + zplus*s/sqrt(n)
+z2<-m + zminus*s/sqrt(n)
+
+##T Test
+t1<-m + tplus*s/sqrt(n)
+t2<-m + tminus*s/sqrt(n)
+
+print("For rejection of null hypothesis, Z test shows mean must be less than or equal to: ")
+print(z2)
+print("For rejection of null hypothesis, t test shows mean must be less than or equal to: ")
+print(t2)
+
+```
+```{r}
+##ANSWER 1H
+x<-150.8
+m<-162
+s<-50.3
+n<-32
+
+z<-(x-m)/(s/sqrt(n))
+
+
+zplus<-qnorm((1-((1-0.95)/2)),mean=0,sd=1)
+zminus<-qnorm(0.0275,mean=0,sd=1)
+
+tplus<-qt(0.95,df=31)
+tminus<-qt(0.05,df=31)
+
+
+##Z Test
+z1<-m + zplus*s/sqrt(n)
+z2<-m + zminus*s/sqrt(n)
+
+##T Test
+t1<-m + tplus*s/sqrt(n)
+t2<-m + tminus*s/sqrt(n)
+
+print("For rejection of null hypothesis, Z test shows mean must be less than or equal to: ")
+print(z2)
+print("For rejection of null hypothesis, t test shows mean must be less than or equal to: ")
+print(t2)
+```
+
+```{r}
+##ANSWER 1I
+x<-150.8
+m<-162
+s<-50.3
+n<-32
+
+z<-(x-m)/(s/sqrt(n))
+
+
+zplus<-qnorm((1-((1-0.99)/2)),mean=0,sd=1)
+zminus<-qnorm(0.005,mean=0,sd=1)
+
+tplus<-qt(0.99,df=31)
+tminus<-qt(0.01,df=31)
+
+##Z Test
+z1<-m + zplus*s/sqrt(n)
+z2<-m + zminus*s/sqrt(n)
+
+##T Test
+t1<-m + tplus*s/sqrt(n)
+t2<-m + tminus*s/sqrt(n)
+
+print("For rejection of null hypothesis, Z test shows mean must be less than or equal to: ")
+print(z2)
+print("For rejection of null hypothesis, t test shows mean must be less than or equal to: ")
+print(t2)
+```
+
+```{r}
+##ANSWER 1J
+
+x<-150.8
+m<-162
+s<-50.3
+n<-32
+
+z<-(x-m)/(s/sqrt(n))
+
+zminus<-qnorm(0.05,mean=0,sd=1)
+print("Critical value for Z-Test:")
+print(zminus)
+
+tminus<-qt(0.10,df=31)
+print("Critical value for t-Test:")
+print(tminus)
+```
+```{r}
+##ANSWER 1K
+x<-150.8
+m<-162
+s<-50.3
+n<-32
+
+z<-(x-m)/(s/sqrt(n))
+
+zminus<-qnorm(0.025,mean=0,sd=1)
+print("Critical value for Z-Test:")
+print(zminus)
+
+tminus<-qt(0.05,df=31)
+print("Critical value for t-Test:")
+print(tminus)
+```
+
+```{r}
+
+##ANSWER 1L
+x<-150.8
+m<-162
+s<-50.3
+n<-32
+
+z<-(x-m)/(s/sqrt(n))
+
+zminus<-qnorm(0.005,mean=0,sd=1)
+print("Critical value for Z-Test:")
+print(zminus)
+
+tminus<-qt(0.01,df=31)
+print("Critical value for t-Test:")
+print(tminus)
+```
+```{r}
+##ANSWER 1m
+
+x<-150.8
+m<-162
+s<-50.3
+n<-32
+
+z<-(x-m)/(s/sqrt(n))
+
+k<-pnorm(z,0,1)
+l<-pt(z,31)
+
+print("p-value with z:")
+print(k)
+
+print("p-value with t:")
+print(l)
+```
+```{r}
+##ANSWER 1n
+x<-150.8
+m<-162
+s<-50.3
+n<-32
+
+z<-(x-m)/(s/sqrt(n))
+
+k<-pnorm(z,0,1)
+l<-pt(z,31)
+
+print("Minimum confidence level to reject null hypothesis with z:")
+print((1-k)*100)
+
+print("Minimum confidence level to reject null hypothesis  t:")
+print((1-l)*100)
+
+```
+```{r}
+##ANSWER 1o
+
+##From the previous part we can understand that p-value provides a faster solution. We exactly know thee boundary at which we can reject the null hypothesis.Below the minimum confidence level, we fail to reject the null hypothesis.
+
+##In the previous parts, as we use different confidence intervals, the mean values of the boundaries changed. The confidance intervals give statistical significance of the sample, whereas the p-value gives practival significance. 
+```
+
+```{r}
+#ANSWER 2
+##ANSWER 2A
+
+##H0 : Average length of games is greater than or equal to 213 minutes
+```
+
+```{r}
+##ANSWER 2B
+##H1 : Average length of games is less than 213 minutes
+```
+
+```{r}
+
+##ANSWER 2C
+#We use parametric testing. We assume the distribution to be normal, as shown from below histogram. Parametric testing has less p-value and greater statistical power.
+times = c(168, 164, 202, 172,151,133,151,239,156,211,147,185,164,180,317)
+hist(y)
+
+```
+
+```{r}
+##ANSWER 2D
+
+times = c(168, 164, 202, 172,151,133,151,239,156,211,147,185,164,180,317)
+means = replicate(100000,mean(sample(times,15,replace=TRUE)))
+x<-mean(means)
+s<-sd(times)/sqrt(15)
+u<-213
+n<-15
+  
+z<-(x-u)/s
+k<-pt(z,(n-1))
+
+print("Critical value")
+print(z)
+print("P-value")
+print(k)
+```
+```{r}
+
+##ANSWER 2E
+k<-qt(0.001, 14)
+print(k)
+
+##Since -3.87<-2.54, we fail to reject the null hypothesis at 99%.
+```
+```{r}
+##ANSWER 2G
+set.seed(4567)
+means = replicate(1000,mean(sample(times,12,replace=TRUE)))
+x<-mean(means)
+times_80<-sample(times,12,replace=TRUE)
+s<-sd(times_80)/sqrt(12)
+u<-(60*4)
+  
+z<-(x-u)/s
+
+
+k<-qt(0.1, 14)
+n<-qt(0.02, 14)
+
+print(z)
+print(k)
+print(n)
+
+##Since z<k and z<n, we reject the null hypothesis. We proceed to confirm the claim as true for 90% and 98% confidence intervals.
+```
+
+```{r}
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
